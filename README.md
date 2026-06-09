@@ -3,16 +3,36 @@
 
 <!-- Organization Logo -->
 <div align="center" style="display: flex; align-items: center; justify-content: center; gap: 16px;">
+  <img src="./public/org-explorer-logo.svg" width="175" />
   <img alt="AOSSIE" src="public/aossie-logo.svg" width="175">
-  <img src="public/orgexplorer-logo.svg" width="175" />
 </div>
 
+<<<<<<< HEAD
 &nbsp;
 
 <!-- Organization Name -->
 <div align="center">
 
 [![Static Badge](https://img.shields.io/badge/aossie.org/OrgExplorer-228B22?style=for-the-badge&labelColor=FFC517)](https://orgexplorer.aossie.org/)
+=======
+<div align="center" style="margin-top: 16px; margin-bottom: 16px;">
+
+
+<a href="https://x.com/aossie_org">
+<img src="https://img.shields.io/twitter/follow/aossie_org" alt="X Badge"/></a>
+&nbsp;&nbsp;
+<a href="https://discord.gg/hjUhu33uAn">
+<img src="https://img.shields.io/discord/1022871757289422898?style=flat&logo=discord&logoColor=white&logoSize=auto&label=Discord&labelColor=5865F2&color=57F287" alt="Discord Badge"/></a>
+&nbsp;&nbsp;
+<a href="https://www.linkedin.com/company/aossie/">
+  <img src="https://img.shields.io/badge/LinkedIn-black?style=flat&logo=LinkedIn&logoColor=white&logoSize=auto&color=0A66C2" alt="LinkedIn Badge"></a>
+&nbsp;&nbsp;
+<a href="https://www.youtube.com/@StabilityNexus">
+  <img src="https://img.shields.io/youtube/channel/subscribers/UCZOG4YhFQdlGaLugr_e5BKw?style=flat&logo=youtube&logoColor=white&logoSize=auto&labelColor=FF0000&color=FF0000" alt="Youtube Badge"></a>
+  &nbsp;&nbsp;
+
+[![License](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+>>>>>>> 29b1eb4 (feat/README and CONTRIBUTING work)
 
 </div>
 
@@ -39,6 +59,7 @@
 
 ---
 
+<<<<<<< HEAD
 <div align="center">
 <h1>OrgExplorer</h1>
 </div>
@@ -55,11 +76,26 @@ Instead of browsing repositories one by one, OrgExplorer allows you to explore:
 - Organizational health metrics  
 
 It turns GitHub data into insight.
+=======
+**OrgExplorer** transforms GitHub organizations into interactive, visual intelligence dashboards. Explore repository relationships, compare two or more organizations, contributor networks, activity trends, risk metrics, and organizational health—all without leaving your browser.
+
+### Key Insights
+
+- Organizational structure and repository relationships
+- Comparative analysis of multiple organizations
+- Repository relationship mapping
+- Contributor collaboration networks
+- Activity trends and growth patterns
+- Bus factor & single-point-of-failure detection
+- Technology stack distribution
+- Real-time organizational metrics
+>>>>>>> 29b1eb4 (feat/README and CONTRIBUTING work)
 
 ---
 
 ## 🚀 Features
 
+<<<<<<< HEAD
   **Fully Browser-Based Application**
    No backend server required. Runs entirely in the browser using GitHub's REST API for data retrieval and processing. Runs entirely in the browser with no dedicated backend server. All data is fetched directly from GitHub APIs.
 
@@ -83,11 +119,35 @@ It turns GitHub data into insight.
 
   **Optional Authenticated Mode**
    For users who want deeper insights, an authenticated mode can be enabled to access GitHub's GraphQL API, unlocking more detailed data and analytics.
+=======
+- **Fully Browser-Based** — Runs entirely in the browser using GitHub APIs with no backend server required.
+
+- **Organization Overview Dashboard** — Explore repositories, contributors, activity trends, tech stack distribution, and organization growth insights.
+
+- **Advanced Repository Analytics** — Analyze repository activity, contributor density, issue and PR trends, health metrics, and lifecycle status.
+
+- **Contributor & Repository Network Graphs** — Interactive visualizations for contributor collaboration and repository-centric contributor relationships.
+
+- **Multi-Organization Analysis** — Compare and analyze multiple GitHub organizations together.
+
+- **Repository Health & Governance Insights** — Detect inactive repositories, stale issues/PRs, missing licenses, and contributor concentration risks.
+
+- **Time-Series Activity Charts** — Visualize weekly and monthly repository, issue, and pull request activity trends.
+
+- **Persistent API Cache & Performance Optimization** — IndexedDB-powered caching and optimized handling for large organizations and datasets.
+
+- **Personal Access Token (PAT) & API Quota Support** — Optional authenticated mode with rate limit awareness and enhanced API access.
+
+- **Advanced Repository Explorer** — Interactive repository table with filtering, sorting, and computed analytics metrics.
+
+- **Export & Share Features** — Export analytics reports and share application state through URL-based deep linking.
+>>>>>>> 29b1eb4 (feat/README and CONTRIBUTING work)
 
 ---
 
 ## 💻 Tech Stack
 
+<<<<<<< HEAD
 ### Frontend
 
 - TypeScript
@@ -96,6 +156,13 @@ It turns GitHub data into insight.
 - D3.js / Graph-based visualizations
 - GitHub REST API
 - Optional GraphQL API (Authenticated Mode)
+=======
+**Frontend**: React 18 · JavaScript · TailwindCSS · Vite  
+**Visualizations**: D3.js · Recharts  
+**Data**: GitHub REST & GraphQL APIs  
+**Storage**: IndexedDB (browser-based caching), Local Storage (user settings)  
+**Build**: Vite with React plugin
+>>>>>>> 29b1eb4 (feat/README and CONTRIBUTING work)
 
 ---
 
@@ -268,7 +335,7 @@ end
 
 ### System Structure
 
-- Frontend (React + D3.js)
+- Frontend (React + D3.js + Recharts)
 - Data Processing Layer (analytics engine)
 - GitHub REST API
 - Optional GitHub GraphQL API
@@ -286,7 +353,7 @@ User → Frontend → API → GitHub APIs → Processing Layer → Database → 
 ```
 User enters organization name
         ↓
-REST API fetches public insights
+REST API fetches public insights for organization
         ↓
 Analytics engine computes metrics
         ↓
@@ -297,6 +364,7 @@ Dashboard renders visual intelligence
 
 ### Key User Journeys
 
+<<<<<<< HEAD
 1. **Explore an Organization**
    - Enter org name
    - View overview dashboard
@@ -306,6 +374,23 @@ Dashboard renders visual intelligence
    - Open contributor graph
    - Inspect collaboration edges
    - Identify central contributors
+=======
+1. **Clone & Install**
+
+   ```bash
+   git clone https://github.com/AOSSIE-Org/OrgExplorer.git
+   cd OrgExplorer
+   npm install
+   ```
+
+2. **Run Development Server**
+
+   ```bash
+   npm run dev
+   ```
+
+   Open http://localhost:5173 in your browser.
+>>>>>>> 29b1eb4 (feat/README and CONTRIBUTING work)
 
 3. **Risk Assessment**
    - Open bus factor panel
@@ -316,6 +401,7 @@ Dashboard renders visual intelligence
 
 ## 🍀 Getting Started
 
+<<<<<<< HEAD
 ### Prerequisites
 
 - Node.js 18+
@@ -386,6 +472,15 @@ If you love the vision — give it a ⭐.
 
 ---
 
+=======
+We welcome contributions from developers, designers, and open-source enthusiasts. See [CONTRIBUTING.md](./CONTRIBUTING.md) for:
+
+- How to report bugs and suggest features
+- Development workflow and coding standards
+- Pull request guidelines
+- Community communication
+
+>>>>>>> 29b1eb4 (feat/README and CONTRIBUTING work)
 ## 📍 License
 
 This project is licensed under the GNU General Public License v3.0.  
@@ -397,4 +492,19 @@ See the [LICENSE](LICENSE) file for details.
 
 Open source grows because of people like you.
 
+<<<<<<< HEAD
 © 2026 AOSSIE. All rights reserved.
+=======
+© 2026 AOSSIE. All rights reserved.
+
+---
+
+## 💪Thanks To All Contributors
+
+Thanks a lot for spending your time helping Resonate grow. Keep rocking 🥂
+
+<a href="https://github.com/AOSSIE-Org/OrgExplorer/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=AOSSIE-Org/OrgExplorer" alt="Contributors"/>
+</a>
+<br>
+>>>>>>> 29b1eb4 (feat/README and CONTRIBUTING work)
