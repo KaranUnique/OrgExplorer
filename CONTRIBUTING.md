@@ -50,12 +50,15 @@ Before opening an issue, search existing ones to avoid duplicates. Useful bug re
 
 OrgExplorer is a **single-package frontend** application:
 
-| Area | Stack |
-|------|--------|
-| UI | [React](https://react.dev/) 19 |
-| Language | [TypeScript](https://www.typescriptlang.org/) |
-| Build & dev server | [Vite](https://vite.dev/) (with `@vitejs/plugin-react`) |
-| Linting | [ESLint](https://eslint.org/) 9 (flat config in `eslint.config.js`) |
+| Component | Technology |
+|-----------|-----------|
+| **UI Framework** | React 18 with JavaScript |
+| **Styling** | TailwindCSS |
+| **Build Tool** | Vite |
+| **Linting** | ESLint 9 |
+| **Data Fetching** | GitHub REST & GraphQL APIs |
+| **Visualizations** | D3.js & Recharts |
+| **Storage** | IndexedDB (browser-based) |
 
 Approximate layout:
 
@@ -63,19 +66,24 @@ Approximate layout:
 OrgExplorer/
 ├── public/           # Static assets (e.g. logos)
 ├── src/
-│   ├── App.tsx       # Root UI
-│   ├── main.tsx      # React entry
-│   └── *.css         # Styles
-├── index.html
-├── vite.config.ts
-├── eslint.config.js
-├── tsconfig.json     # TypeScript project references
-└── package.json
+│   ├── App.jsx         # Root component
+│   ├── main.jsx        # React entry point
+│   ├── components/     # Reusable components
+│   ├── pages/          # Page components
+│   ├── context/        # Context providers
+│   ├── hooks/          # Custom hooks
+│   ├── services/       # API clients and utility functions
+│   └── styles/         # Global & module styles
+├── index.html          # HTML entry point
+├── vite.config.js      # Vite configuration
+├── eslint.config.js    # ESLint rules
+├── tsconfig.json       # TypeScript config
+└── package.json        # Dependencies & scripts
 ```
 
 There is **no `test` script** in `package.json` yet. Before opening a PR, run **lint** and **build** locally (see below).
 
-## Getting started
+## Getting Started
 
 ### Prerequisites
 
@@ -229,10 +237,7 @@ Brief summary of changes.
 ## Related issue
 Fixes #23
 
-## Testing
-- `npm run lint`
-- `npm run build`
-- Manual: …
+### JavaScript & React
 
 ## Checklist
 See PR template.
@@ -240,14 +245,9 @@ See PR template.
 
 ## Code style
 
-### TypeScript and React
-
-- Follow the existing **ESLint** setup in `eslint.config.js` (`typescript-eslint`, React Hooks, React Refresh for Vite).
-- Prefer `const`; use `let` only when reassignment is needed.
-- Use meaningful names; keep components and functions focused.
-- Match formatting and patterns in nearby files.
-
-### General
+- **No unnecessary dependencies** — Use browser APIs when possible
+- **No secrets or large artifacts** — Don't commit API keys, build outputs, or node_modules
+- **Keep it simple** — Avoid over-engineering; favor readability
 
 - Avoid unnecessary dependencies.
 - Do not commit secrets or large generated artifacts unrelated to the feature.
@@ -265,4 +265,10 @@ See PR template.
 
 ---
 
-Thank you for helping improve OrgExplorer.
+## Questions?
+
+- 💬 **Discord**: Ask on [AOSSIE server](https://discord.gg/hjUhu33uAn)
+- 🐛 **Bug reports**: Open an [issue](https://github.com/AOSSIE-Org/OrgExplorer/issues)
+- 💡 **Ideas**: Start a [discussion](https://github.com/AOSSIE-Org/OrgExplorer/discussions)
+
+Thank you for contributing to OrgExplorer! 🎉
