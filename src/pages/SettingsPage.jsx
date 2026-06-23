@@ -3,8 +3,7 @@ import { FiEye, FiEyeOff, FiTrash2, FiSave, FiRefreshCw } from 'react-icons/fi'
 import { useApp } from '../context/AppContext'
 import { C } from '../components/UI'
 import { cacheClear } from '../services/github'
-import { BsFillInfoSquareFill } from "react-icons/bs";
-
+import { AiOutlineInfoCircle } from "react-icons/ai";
 export default function SettingsPage() {
   const { pat, savePat, rateLimit } = useApp()
   const [draft, setDraft] = useState(pat)
@@ -77,9 +76,9 @@ export default function SettingsPage() {
                   <button
                     onMouseEnter={()=> setOpen(true)}
                     onMouseLeave={()=> setOpen(false)}
-                    className="p-2 rounded-full hover:bg-zinc-800 transition"
+                    className="p-2 rounded-full hover:bg-(--bg) transition"
                   >
-                    <BsFillInfoSquareFill className="text-white cursor-pointer" />
+                    <AiOutlineInfoCircle className="text-(--text) cursor-pointer" />
                   </button>
 
                   {open && (
@@ -244,9 +243,9 @@ export default function SettingsPage() {
             <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 16, letterSpacing: '.03em' }}>Technical Information</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 16 }}>
               {[
-                ['Core Version', 'v1.0.0-stable'],
+                ['Version', 'v1.0.0-stable'],
                 ['Architecture', 'Client-side only, no backend'],
-                ['API strategy', '53 req/hr unauthenticated'],
+                ['API strategy', '60 req/hr unauthenticated'],
                 ['Cache', 'IndexedDB + React Context'],
               ].map(([k, v]) => (
                 <div key={k} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13 }}>
@@ -258,7 +257,7 @@ export default function SettingsPage() {
 
             <div style={{ ...C.label, marginBottom: 10 }}>Stack Integrity</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-              {['React 18 + Vite', 'React Router v6', 'D3.js v7 (network graph)', 'Recharts 2 (time-series)', 'react-icons', 'IndexedDB cache'].map(s => (
+              {['React 18 + Vite', 'React Router v6', 'D3.js v7 (network graph)', 'Recharts 2 (time-series)', 'IndexedDB cache'].map(s => (
                 <div key={s} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13 }}>
                   <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--green)', flexShrink: 0 }} />
                   <span style={{ color: 'var(--text2)' }}>{s}</span>
