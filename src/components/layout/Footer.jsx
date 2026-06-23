@@ -11,7 +11,7 @@ import { HiOutlineMail } from "react-icons/hi";
 const footerLinks = [
   {
     label: "Documentation",
-    href: "/docs",
+    href: "https://github.com/AOSSIE-Org/OrgExplorer/blob/main/README.md",
   },
   {
     label: "Terms of Service",
@@ -23,7 +23,7 @@ const footerLinks = [
   },
   {
     label: "API Status",
-    href: "/status",
+    href: "/settings#api-status",
   },
 ];
 

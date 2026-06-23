@@ -18,6 +18,7 @@ export default function ThemeToggle() {
         alignItems: "center",
         gap: 5,
       }}
+      className='h-[-webkit-fill-available]'
       title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
     >
       {theme === "dark" ? <FiSun size={13} /> : <FiMoon size={13} />}
