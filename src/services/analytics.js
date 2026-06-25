@@ -174,16 +174,16 @@ export function getTopRepositories(repos, limit = 10) {
 
   return [...repos]
     .map(repo => {
-      const daysSinceLastPush =
-        (Date.now() - new Date(repo.pushed_at).getTime()) / MS_PER_DAY;
+      const pushedAtMs = Date.parse(repo.pushed_at);  
+      const daysSinceLastPush = Number.isFinite(pushedAtMs) ? (Date.now() - pushedAtMs) / MS_PER_DAY : Infinity;
 
       const activityBonus = 0.5 * Math.max(0, 365 - daysSinceLastPush);
 
-      const score =
-        repo.stargazers_count +
-        repo.forks_count * 2 +
-        repo.watchers_count * 1.5 +
-        activityBonus;
+      const score =  
+        (repo.stargazers_count ?? 0) +  
+        (repo.forks_count ?? 0) * 2 +  
+        (repo.watchers_count ?? 0) * 1.5 +  
+        activityBonus;  
 
       return {
         ...repo,
