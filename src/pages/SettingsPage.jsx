@@ -145,12 +145,14 @@ export default function SettingsPage() {
             <div style={{ display: 'flex', gap: 8 }}>
               <button
                 onClick={handleSave}
+                disabled={!draft.trim()}
                 style={{ ...C.btn('primary'), display: 'flex', alignItems: 'center', gap: 5, fontSize: 13 }}
               >
                 <FiSave size={13} /> {saved ? 'Saved' : 'Save'}
               </button>
               <button
                 onClick={handleDelete}
+                disabled={!draft.trim()}
                 style={{ ...C.btn('danger'), display: 'flex', alignItems: 'center', gap: 5, fontSize: 13 }}
               >
                 <FiTrash2 size={13} /> Delete
