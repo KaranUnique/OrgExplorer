@@ -77,13 +77,13 @@ export function AppProvider({ children }) {
       setLoadMsg('Fetching repositories...')
       const reposPerOrg = {}
       await Promise.allSettled(validOrgs.map(async org => {
-        reposPerOrg[org.login] = await fetchRepos(org.login, pat)
+        reposPerOrg[org.login] = await fetchRepos(org.login, org.public_repos, pat)
       }))
 
       setLoadMsg('Fetching contributor data for top repositories...')
       const contribsPerRepo = {}
       for (const org of validOrgs) {
-        const top = (reposPerOrg[org.login] || [])
+        const top = pat ? (reposPerOrg[org.login] || []) : (reposPerOrg[org.login] || [])
           .sort((a, b) => b.stargazers_count - a.stargazers_count)
           .slice(0, 10)
         await Promise.allSettled(top.map(async repo => {
@@ -114,8 +114,8 @@ export function AppProvider({ children }) {
   const runAudit = useCallback(async () => {
     if (!model || govLoading) return
     setGovLoading(true)
-    const map = {}
-    const repos = model.allRepos.slice(0, 15)
+    const map   = {}
+    const repos = pat? model.allRepos : model.allRepos.slice(0, 15)
 
     // Batches of 5 using Promise.allSettled
     for (let i = 0; i < repos.length; i += 5) {
