@@ -66,6 +66,7 @@ export default function Navbar() {
         <button
           onClick={() => navigate('/settings')}
           style={{ background: 'none', border: '1px solid var(--border)', color: 'var(--text2)', borderRadius: 6, padding: '5px 10px', fontSize: 12, display: 'flex', alignItems: 'center', gap: 5 }}
+          className='h-[-webkit-fill-available]'
         >
           <FiSettings size={13} /> Settings
         </button>
