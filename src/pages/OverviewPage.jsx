@@ -3,14 +3,15 @@ import { useNavigate } from 'react-router-dom'
 import { FiExternalLink, FiShare2, FiArrowRight } from 'react-icons/fi'
 import { useApp } from '../context/AppContext'
 import { C, StatCard, HealthBar } from '../components/UI'
-import { BsFillInfoSquareFill } from "react-icons/bs";
 import SocialShareButton from '../components/SocialShareButton';
+import { AiOutlineInfoCircle } from "react-icons/ai";
+
 
 const LANG_COLORS = ['#22c55e', '#f5c518', '#3b82f6', '#ef4444', '#a855f7', '#f97316', '#06b6d4']
 const fmt = n => n > 999 ? (n / 1000).toFixed(1) + 'k' : String(n)
 
 export default function OverviewPage() {
-  const { orgs, model } = useApp()
+  const { orgs, model, totalRepo } = useApp()
   const navigate = useNavigate()
   const [open, setOpen] = useState(false)
   const infoRef = useRef(null)
@@ -71,7 +72,7 @@ export default function OverviewPage() {
           </div>
         ) : (
           orgs[0]?.avatar_url && (
-            <img src={orgs[0].avatar_url} alt="" style={{ width: 56, height: 56, borderRadius: '50%', border: '2px solid var(--border)' }} />
+            <img src={orgs[0].avatar_url} alt="" style={{ width: 56, height: 56 }} />
           )
         )}
         <div style={{ flex: 1 }}>
@@ -102,10 +103,10 @@ export default function OverviewPage() {
 
       {/* Stats */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 12, marginBottom: 24 }}>
-        <StatCard label="Total Repos" value={allRepos.length.toLocaleString()} />
+        <StatCard label="Total Repos" value={totalRepo.toLocaleString()} />
         <StatCard label="Total Stars" value={fmt(totalStars)} />
         <StatCard label="Total Forks" value={fmt(totalForks)} />
-        <StatCard label="Active Repos" value={activeRepos} sub={`${Math.round(activeRepos / allRepos.length * 100)}% of total`} />
+        <StatCard label="Active Repos" value={activeRepos} sub={`${Math.round(activeRepos / totalRepo * 100)}% of total`} />
       </div>
 
       {/* Language + top repos */}
@@ -138,16 +139,17 @@ export default function OverviewPage() {
             <p>High Impact Repositories</p>
 
             <button
-              onClick={() => setOpen(prev => !prev)}
-              className="p-3 rounded-full hover:bg-zinc-800 transition"
+              onMouseEnter={()=>setOpen(true)}
+              onMouseLeave={()=>setOpen(false)}
+              className="p-3 rounded-full hover:bg-(--bg) transition"
             >
-              <BsFillInfoSquareFill />
+              <AiOutlineInfoCircle className="text-(--text) cursor-pointer" />
             </button>
           </div>
 
           {open && (
             <div
-              className="absolute top-16 right-2 w-80 z-50 rounded-lg border-2 border-(--border) bg-zinc-900 p-4 shadow-xl text-xs"
+              className="absolute top-16 right-2 w-80 z-50 rounded-lg border-2 border-(--border) bg-(--surface) p-4 shadow-xl text-xs"
             >
               <strong>Health Score</strong> estimates the overall health of a repository on a scale of 0 – 100.
 
@@ -163,7 +165,7 @@ export default function OverviewPage() {
                 </li>
               </ul>
 
-              <p className="mt-2 text-zinc-400">
+              <p className="mt-2 text-xs text-(--text2)">
                 Higher scores indicate healthier and more actively maintained repositories.
               </p>
             </div>

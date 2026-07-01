@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useCallback, useEffect } from 'react'
 import { fetchOrg, fetchRepos, fetchContributors, fetchIssues, } from '../services/github'
-import { buildAnalyticalModel } from '../services/analytics'
+import { buildAnalyticalModel, getTopRepositories } from '../services/analytics'
 
 const Ctx = createContext(null)
 
@@ -58,7 +58,7 @@ export function AppProvider({ children }) {
 
     return () => clearTimeout(timeout)
   }, [rateLimit])
-
+  const [totalRepo, setTotalRepo] = useState(0);
   const savePat = useCallback(token => {
     setPat(token)
     token ? localStorage.setItem('oe_pat', token) : localStorage.removeItem('oe_pat')
@@ -80,12 +80,20 @@ export function AppProvider({ children }) {
         reposPerOrg[org.login] = await fetchRepos(org.login, org.public_repos, pat)
       }))
 
+      const total = Object.values(reposPerOrg).reduce(
+        (sum, repos) => sum + repos.length,
+        0
+      );
+
+      setTotalRepo(total);
+
       setLoadMsg('Fetching contributor data for top repositories...')
       const contribsPerRepo = {}
       for (const org of validOrgs) {
-        const top = pat ? (reposPerOrg[org.login] || []) : (reposPerOrg[org.login] || [])
-          .sort((a, b) => b.stargazers_count - a.stargazers_count)
-          .slice(0, 10)
+
+        const top = pat ? (reposPerOrg[org.login] || []) : getTopRepositories(reposPerOrg[org.login] || [], 10);
+        reposPerOrg[org.login] = top; // Update to only include top repos
+
         await Promise.allSettled(top.map(async repo => {
           contribsPerRepo[`${org.login}/${repo.name}`] = await fetchContributors(org.login, repo.name, pat)
         }))
@@ -131,7 +139,7 @@ export function AppProvider({ children }) {
   return (
     <Ctx.Provider value={{
       pat, savePat, orgs, model, issuesData,
-      rateLimit, loading, loadMsg, govLoading, error,
+      rateLimit, loading, loadMsg, govLoading, error, totalRepo,
       explore, runAudit, setError,
     }}>
       {children}
