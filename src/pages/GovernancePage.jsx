@@ -40,7 +40,7 @@ const getStatus = ratio => {
 }
 
 export default function GovernancePage() {
-  const { model, issuesData, runAudit, govLoading, staleRepoStats, error, setError } = useApp()
+  const { model, issuesData, runAudit, govLoading, staleRepoStats, auditError, setAuditError } = useApp()
   const [tab, setTab] = useState('dead')
 
   const ITEMS_PER_PAGE = 10
@@ -153,16 +153,20 @@ export default function GovernancePage() {
       />
 
       {/* Audit error banner */}
-      {error && (
-        <div style={{
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          background: 'rgba(239,68,68,.08)', border: '1px solid rgba(239,68,68,.3)',
-          borderRadius: 8, padding: '10px 16px', marginBottom: 20,
-          fontSize: 13, color: 'var(--red)',
-        }}>
-          <span>{error}</span>
+      {auditError && (
+        <div
+          role="alert"
+          style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            background: 'rgba(239,68,68,.08)', border: '1px solid rgba(239,68,68,.3)',
+            borderRadius: 8, padding: '10px 16px', marginBottom: 20,
+            fontSize: 13, color: 'var(--red)',
+          }}
+        >
+          <span>{auditError}</span>
           <button
-            onClick={() => setError('')}
+            type="button"
+            onClick={() => setAuditError('')}
             style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--red)', fontSize: 16, lineHeight: 1, padding: '0 4px' }}
             aria-label="Dismiss error"
           >
